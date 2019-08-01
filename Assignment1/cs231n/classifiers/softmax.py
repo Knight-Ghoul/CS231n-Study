@@ -29,7 +29,26 @@ def softmax_loss_naive(W, X, y, reg):
   # here, it is easy to run into numeric instability. Don't forget the        #
   # regularization!                                                           #
   #############################################################################
-  pass
+  num_samples = X.shape[0]
+  num_classes = W.shape[1]
+  score_row_i = np.zeros(num_classes)
+  for i in range(num_samples):
+    score_row_i = X[i].dot(W)
+    score_row_i -= np.max(score_row_i)  # prevent numeric instability
+    loss -= np.log(np.exp(score_row_i[y[i]]) / np.sum(np.exp(score_row_i)))
+    for j in range(num_classes):
+      P_ij = np.exp(score_row_i[j]) / np.sum(np.exp(score_row_i))
+      if (j == y[i]):
+        dW[:, j] += X[i, :].T * (P_ij - 1)
+      else:
+        pass
+        dW[:, j] += X[i, :].T * P_ij
+
+  loss /= num_samples
+  dW /= num_samples
+
+  loss += reg * np.sum(W * W)
+  dW += 2 * reg * W
   #############################################################################
   #                          END OF YOUR CODE                                 #
   #############################################################################
@@ -53,7 +72,20 @@ def softmax_loss_vectorized(W, X, y, reg):
   # here, it is easy to run into numeric instability. Don't forget the        #
   # regularization!                                                           #
   #############################################################################
-  pass
+  num_samples = X.shape[0]
+  num_classes = W.shape[1]
+  score = X.dot(W)  # N by C
+  prob = score - np.max(score, axis=1, keepdims=True)
+  prob = np.exp(prob) / np.sum(np.exp(prob), axis=1, keepdims=True)  # N by C, Mat of P
+  loss = np.sum(-1 * np.log(prob[range(num_samples), y]))
+  prob[range(num_samples), y] -= 1  # j == y[i] , dw = (P_ij - 1)Xi
+  dW = X.T.dot(prob)  # (D by N)(N by C) = D by C
+
+  loss /= num_samples
+  dW /= num_samples
+
+  loss += reg * np.sum(W * W)
+  dW += 2 * reg * W
   #############################################################################
   #                          END OF YOUR CODE                                 #
   #############################################################################
