@@ -1,6 +1,8 @@
 [Linear classification: Support Vector Machine, Softmax](http://cs231n.github.io/linear-classify/)
 ====
 ---
+[toc]
+---
 # 1.Linear Classification-线性分类概述
 线性分类主要由两部分组成，**评分函数(score function)和损失函数(loss function)**。其中 **评分函数(score function)** 是原始图像数据(raw data)到类别分值(class score)的映射；而 **损失函数(loss function)** 是用来量化预测分类标签的得分与真实标签之间的一致性。所有的NN和CNN问题实际上都是围绕这两个function进行的。
 # 2.score function-评分函数

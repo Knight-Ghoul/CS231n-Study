@@ -1,6 +1,9 @@
 [Optimization: Stochastic Gradient Descent](http://cs231n.github.io/optimization-1/)
 ====
 ---
+[toc]
+
+---
 # 1.Introduction-简介
 通过线性分类，我们得知了图像分类任务中的两个关键部分:
 1. 基于参数的评分函数(score function)。该函数将原始图像像素映射为分类评分值（例如：一个线性函数）。
@@ -85,7 +88,7 @@ while True:
   weights += - step_size * weights_grad # 参数更新
 ```
 
-# 代码实现
+# **代码实现**
 这里完全照搬[CS231n课程及作业详细解读](https://github.com/FortiLeiZhang/cs231n)中的Course Note 3.md中的内容，写的实在是太好了
 ###### svm_naive
 
