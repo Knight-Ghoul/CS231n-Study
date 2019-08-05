@@ -11,23 +11,29 @@ def extract_features(imgs, feature_fns, verbose=False):
   single images, apply all feature functions to all images, concatenating the
   feature vectors for each image and storing the features for all images in
   a single matrix.
+  给定图像的像素数据和可以在单个图像上操作的若干特征函数，
+  将所有特征函数应用于所有图像，
+  连接每个图像的特征向量并将所有图像的特征存储在单个矩阵中。
 
   Inputs:
-  - imgs: N x H X W X C array of pixel data for N images.
+  - imgs: N x H X W X C array of pixel data for N images.N个图像的像素矩阵
   - feature_fns: List of k feature functions. The ith feature function should
     take as input an H x W x D array and return a (one-dimensional) array of
     length F_i.
-  - verbose: Boolean; if true, print progress.
+    k个要素函数列表。 第i个特征函数应该将H x W x D数组作为输入，并返回长度为F_i的（一维）数组。
+  - verbose: Boolean; if true, print progress.Boolean; 如果为true，则打印进度。
 
   Returns:
   An array of shape (N, F_1 + ... + F_k) where each column is the concatenation
   of all features for a single image.
+    返回：
+   形状数组（N，F_1 + ... + F_k），其中每列是单个图像的所有要素的串联。
   """
   num_images = imgs.shape[0]
   if num_images == 0:
     return np.array([])
 
-  # Use the first image to determine feature dimensions
+  # Use the first image to determine feature dimensions 确定特征尺寸
   feature_dims = []
   first_image_features = []
   for feature_fn in feature_fns:
