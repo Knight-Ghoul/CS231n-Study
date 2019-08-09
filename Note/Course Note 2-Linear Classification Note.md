@@ -136,6 +136,7 @@ $$
 ---
 
 # Reference
+1. [我的主页](https://github.com/Knight-Ghoul/CS231n-Study)
 1. [CS231n 官方笔记主页](http://cs231n.github.io/)
 1. [CS231n 官方笔记授权翻译](https://zhuanlan.zhihu.com/p/21930884?refer=intelligentunit)
 2. [CS231n课程及作业详细解读](https://github.com/FortiLeiZhang/cs231n)
